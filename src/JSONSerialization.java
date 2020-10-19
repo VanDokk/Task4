@@ -1,38 +1,55 @@
 import org.codehaus.jackson.map.*;
-import org.codehaus.jackson.type.TypeReference;
-
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.List;
+import java.nio.file.Files;
+import java.util.Date;
 
 
 public class JSONSerialization {
+
+    private static String fileNameSquare = "Square" + new Date() + ".json";
+    private static String fileNamePrism = "Prism" + new Date() + ".json";
+
     public static void saveFile(Square sq, SquarePrism sp)
     {
-        try(FileWriter fw = new FileWriter("figureJSON.json"))
+        try
         {
-            Figure[] figures = {sq, sp};
+            FileWriter fw1 = new FileWriter(fileNameSquare, true);
+            FileWriter fw2 = new FileWriter(fileNamePrism, true);
+
             ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(fw, figures);
+
+            mapper.writeValue(fw1, sq);
+            mapper.writeValue(fw2, sp);
         }
+
         catch (Exception e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Ошибка: " + e.getMessage());
         }
     }
 
-    public static Figure[] loadFile(String fileName)
+    public static Figure[] loadFile(String fileNameSquare, String fileNamePrism)
     {
-        try(FileReader fr = new FileReader("figureJSON.json"))
+        Figure[] figures = new Figure[2];
+
+        try
         {
+            FileReader fr1 = new FileReader(fileNameSquare);
+            FileReader fr2 = new FileReader(fileNamePrism);
+
             ObjectMapper mapper = new ObjectMapper();
-            Figure[] figures = mapper.readValue(fr, Figure[].class);
+
+            figures[0] = mapper.readValue(fr1, Square.class);
+            figures[1] = mapper.readValue(fr2, SquarePrism.class);
+
         }
         catch (Exception e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Ошибка: " + e.getMessage());
         }
 
-        return new Figure[1];
+        return figures;
     }
 }

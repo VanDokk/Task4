@@ -1,11 +1,15 @@
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+
 import java.io.Serializable;
 
-
+@JsonAutoDetect
 public class Square implements Figure, Serializable {
 
     protected int side;
 
     public Square(int side) {this.side = side;}
+
+    public Square(){}
 
     public void setSide(int side) {
         try {

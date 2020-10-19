@@ -30,13 +30,14 @@ public class Program {
         }
 
         NativeSerialization.saveFile(Squares.get(flagSquare), Prisms.get(flagDiagonal));
-        Figure[] loadData = NativeSerialization.loadFile("figure.txt");
-        System.out.println("Square:\n" + loadData[0].toString() + "\n\n" + "Prism:\n" + loadData[1].toString());
+        Figure[] loadData = NativeSerialization.loadFile("FigureMon Oct 19 12:59:26 MSK 2020.txt");
+        System.out.println("NATIVESERIALIZATION" + "\n" + "------------");
+        System.out.println("Square:\n" + loadData[0].toString() + "\n\n" + "Prism:\n" + loadData[1].toString() + "\n");
 
 
         JSONSerialization.saveFile(Squares.get(flagSquare), Prisms.get(flagDiagonal));
-        loadData = JSONSerialization.loadFile("figureJSON.txt");
-        //System.out.println(loadData[0]);
-        //System.out.println("Square:\n" + loadData[0].toString() + "\n\n" + "Prism:\n" + loadData[1].toString());
+        loadData = JSONSerialization.loadFile("SquareMon Oct 19 12:55:32 MSK 2020.json", "PrismMon Oct 19 12:55:32 MSK 2020.json");
+        System.out.println("JACKSONSERIALIZATION" + "\n" + "------------");
+        System.out.println("Square:\n" + loadData[0].toString() + "\n\n" + "Prism:\n" + loadData[1].toString());
     }
 }

@@ -9,6 +9,8 @@ public class SquarePrism extends Square implements  Figure, Serializable {
         return height;
     }
 
+    public SquarePrism() {}
+
     public SquarePrism(int side, int height) {
         super(side);
         this.height = height;
